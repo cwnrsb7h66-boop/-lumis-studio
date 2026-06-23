@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)file:///C:/Users/customer/Downloads/index_3.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumis Studio — Visual Storytelling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Lumis Studio — Visual Storytelling_files/css2" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --white: #ffffff;
+    --black: #0a0a0a;
+    --gray-100: #f5f5f3;
+    --gray-200: #e8e8e4;
+    --gray-400: #a0a09a;
+    --gray-600: #6b6b65;
+    --gray-800: #2a2a28;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--white); color: var(--black); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 4rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); }
+  .logo { font-family: var(--serif); font-size: 1.4rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+  .logo span { font-style: italic; font-weight: 400; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-600); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--black); }
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+  .lang-switch { display: flex; align-items: center; border: 1px solid var(--gray-200); overflow: hidden; }
+  .lang-btn { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.75rem; background: none; border: none; cursor: pointer; color: var(--gray-400); font-family: var(--sans); transition: all 0.2s; }
+  .lang-btn.active { background: var(--black); color: var(--white); }
+  .nav-cta { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 0.65rem 1.6rem; text-decoration: none; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.8; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 5rem; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem; }
+  .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 1.5rem; }
+  .hero-title { font-family: var(--serif); font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 2rem; }
+  .hero-title em { font-style: italic; }
+  .hero-sub { font-size: 1rem; color: var(--gray-600); max-width: 380px; line-height: 1.75; margin-bottom: 3rem; }
+  .hero-actions { display: flex; align-items: center; gap: 2rem; }
+  .btn-primary { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 1rem 2.2rem; text-decoration: none; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.8; }
+  .btn-ghost { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-600); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+  .btn-ghost:hover { color: var(--black); }
+  .btn-ghost::after { content: '→'; transition: transform 0.2s; }
+  .btn-ghost:hover::after { transform: translateX(4px); }
+  .hero-right { position: relative; overflow: hidden; background: var(--gray-100); }
+  .hero-grid { display: grid; grid-template-rows: 1fr 1fr; grid-template-columns: 1fr 1fr; height: 100%; gap: 3px; }
+  .hero-img { background: var(--gray-200); overflow: hidden; }
+  .hero-img.tall { grid-row: 1 / 3; }
+  .img-1 { background: url('https://images.unsplash.com/photo-1554080353-a576cf803bda?w=800&q=80') center/cover; }
+  .img-2 { background: url('https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=600&q=80') center/cover; }
+  .img-3 { background: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=80') center/cover; }
+
+  /* MARQUEE */
+  .marquee-wrap { overflow: hidden; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); padding: 1rem 0; }
+  .marquee-track { display: flex; gap: 4rem; animation: marquee 20s linear infinite; white-space: nowrap; }
+  .marquee-item { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-400); flex-shrink: 0; }
+  .marquee-dot { display: inline-block; width: 4px; height: 4px; background: var(--gray-400); border-radius: 50%; vertical-align: middle; margin: 0 1rem; }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* SECTIONS */
+  .section { padding: 7rem 4rem; }
+  .section-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 1rem; }
+  .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.1; margin-bottom: 4rem; max-width: 500px; }
+  .section-title em { font-style: italic; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gray-200); border: 1px solid var(--gray-200); }
+  .service-item { background: var(--white); padding: 3rem 2.5rem; transition: background 0.3s; }
+  .service-item:hover { background: var(--gray-100); }
+  .service-num { font-family: var(--serif); font-size: 2.5rem; font-weight: 300; color: var(--gray-200); display: block; margin-bottom: 1.5rem; line-height: 1; }
+  .service-name { font-size: 1rem; font-weight: 500; margin-bottom: 1rem; }
+  .service-desc { font-size: 0.9rem; color: var(--gray-600); line-height: 1.7; }
+
+  /* PORTFOLIO */
+  .portfolio-section { padding: 7rem 4rem; background: var(--gray-100); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; margin-top: 4rem; }
+  .portfolio-item { overflow: hidden; position: relative; cursor: pointer; }
+  .portfolio-item:nth-child(1) { grid-column: 1 / 8; aspect-ratio: 16/10; }
+  .portfolio-item:nth-child(2) { grid-column: 8 / 13; aspect-ratio: 4/5; }
+  .portfolio-item:nth-child(3) { grid-column: 1 / 5; aspect-ratio: 4/3; }
+  .portfolio-item:nth-child(4) { grid-column: 5 / 13; aspect-ratio: 16/9; }
+  .portfolio-bg { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.6s ease; }
+  .portfolio-item:hover .portfolio-bg { transform: scale(1.05); }
+  .p-img-1 { background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=900&q=80'); }
+  .p-img-2 { background-image: url('https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=80'); }
+  .p-img-3 { background-image: url('https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=700&q=80'); }
+  .p-img-4 { background-image: url('https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=900&q=80'); }
+  .portfolio-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(transparent, rgba(10,10,10,0.7)); opacity: 0; transition: opacity 0.3s; }
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+  .portfolio-tag { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.7); display: block; margin-bottom: 0.3rem; }
+  .portfolio-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 300; color: var(--white); }
+
+  /* ABOUT */
+  .about-section { display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh; }
+  .about-img { background: url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=900&q=80') center/cover; min-height: 500px; }
+  .about-content { padding: 6rem 5rem; display: flex; flex-direction: column; justify-content: center; background: var(--gray-800); color: var(--white); }
+  .about-content .section-label { color: rgba(255,255,255,0.4); }
+  .about-content .section-title { color: var(--white); margin-bottom: 2rem; }
+  .about-text { font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.8; margin-bottom: 1.5rem; }
+  .stats-row { display: flex; gap: 3rem; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); }
+  .stat-num { font-family: var(--serif); font-size: 2.5rem; font-weight: 300; color: var(--white); display: block; line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+
+  /* TESTIMONIALS */
+  .testimonials-section { padding: 7rem 4rem; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+  .testimonial-card { padding: 2.5rem; border: 1px solid var(--gray-200); }
+  .testimonial-quote { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; font-style: italic; line-height: 1.7; color: var(--gray-800); margin-bottom: 2rem; }
+  .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+  .author-avatar { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+  .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .author-name { font-size: 0.85rem; font-weight: 500; }
+  .author-role { font-size: 0.78rem; color: var(--gray-400); margin-top: 0.1rem; }
+
+  /* CONTACT */
+  .contact-section { padding: 7rem 4rem; background: var(--black); color: var(--white); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .contact-section .section-label { color: rgba(255,255,255,0.35); }
+  .contact-section .section-title { color: var(--white); margin-bottom: 1.5rem; }
+  .contact-desc { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 3rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-line { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+  .contact-line strong { color: var(--white); font-weight: 400; min-width: 80px; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .form-group { margin-bottom: 1.5rem; }
+  .form-label { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.6rem; }
+  .form-input, .form-select, .form-textarea { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: var(--white); padding: 0.85rem 1rem; font-family: var(--sans); font-size: 0.9rem; outline: none; transition: border-color 0.2s; appearance: none; }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: rgba(255,255,255,0.4); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-select option { background: var(--gray-800); color: var(--white); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .btn-submit { width: 100%; background: var(--white); color: var(--black); border: none; padding: 1rem 2rem; font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; margin-top: 0.5rem; }
+  .btn-submit:hover { opacity: 0.85; }
+
+  /* FOOTER */
+  footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; }
+  footer .logo { color: rgba(255,255,255,0.5); font-size: 1rem; }
+  .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 6rem 1.5rem 3rem; }
+    .hero-right { min-height: 50vw; }
+    .section { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio-section { padding: 4rem 1.5rem; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .portfolio-item:nth-child(1), .portfolio-item:nth-child(2), .portfolio-item:nth-child(3), .portfolio-item:nth-child(4) { grid-column: auto; aspect-ratio: 4/3; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-img { min-height: 280px; }
+    .about-content { padding: 3rem 1.5rem; }
+    .stats-row { gap: 2rem; }
+    .testimonials-section { padding: 4rem 1.5rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-section { padding: 4rem 1.5rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="file:///C:/Users/customer/Downloads/index_3.html#" class="logo">Lumis <span>Studio</span></a>
+  <ul class="nav-links">
+    <li><a href="file:///C:/Users/customer/Downloads/index_3.html#services" data-en="Services" data-es="Servicios">Services</a></li>
+    <li><a href="file:///C:/Users/customer/Downloads/index_3.html#work" data-en="Work" data-es="Portafolio">Work</a></li>
+    <li><a href="file:///C:/Users/customer/Downloads/index_3.html#about" data-en="About" data-es="Nosotros">About</a></li>
+    <li><a href="file:///C:/Users/customer/Downloads/index_3.html#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang(&#39;en&#39;)">EN</button>
+      <button class="lang-btn" onclick="setLang(&#39;es&#39;)">ES</button>
+    </div>
+    <a href="file:///C:/Users/customer/Downloads/index_3.html#contact" class="nav-cta" data-en="Get a Quote" data-es="Cotizar">Get a Quote</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Miami — Est. 2019</p>
+    <h1 class="hero-title" data-en="We tell stories&lt;br&gt;through &lt;em&gt;light&lt;/em&gt;&lt;br&gt;and motion." data-es="Contamos historias&lt;br&gt;a través de la &lt;em&gt;luz&lt;/em&gt;&lt;br&gt;y el movimiento.">We tell stories<br>through <em>light</em><br>and motion.</h1>
+    <p class="hero-sub" data-en="Lumis Studio is a full-service photography and videography agency crafting visual content for brands, events, and campaigns that demand to be noticed." data-es="Lumis Studio es una agencia integral de fotografía y video que crea contenido visual para marcas, eventos y campañas que exigen ser vistas.">Lumis Studio is a full-service photography and videography agency crafting visual content for brands, events, and campaigns that demand to be noticed.</p>
+    <div class="hero-actions">
+      <a href="file:///C:/Users/customer/Downloads/index_3.html#work" class="btn-primary" data-en="View Our Work" data-es="Ver Portafolio">View Our Work</a>
+      <a href="file:///C:/Users/customer/Downloads/index_3.html#contact" class="btn-ghost" data-en="Start a Project" data-es="Iniciar Proyecto">Start a Project</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-grid">
+      <div class="hero-img tall img-1"></div>
+      <div class="hero-img img-2"></div>
+      <div class="hero-img img-3"></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item" data-en="Brand Photography" data-es="Fotografía de Marca">Brand Photography</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Commercial Video" data-es="Video Comercial">Commercial Video</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Event Coverage" data-es="Cobertura de Eventos">Event Coverage</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Product Shoots" data-es="Fotografía de Productos">Product Shoots</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Social Content" data-es="Contenido Social">Social Content</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Portrait Sessions" data-es="Sesiones de Retrato">Portrait Sessions</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Brand Photography" data-es="Fotografía de Marca">Brand Photography</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Commercial Video" data-es="Video Comercial">Commercial Video</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Event Coverage" data-es="Cobertura de Eventos">Event Coverage</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Product Shoots" data-es="Fotografía de Productos">Product Shoots</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Social Content" data-es="Contenido Social">Social Content</span><span class="marquee-dot"></span>
+    <span class="marquee-item" data-en="Portrait Sessions" data-es="Sesiones de Retrato">Portrait Sessions</span><span class="marquee-dot"></span>
+  </div>
+</div>
+
+<section class="section" id="services">
+  <p class="section-label" data-en="What We Do" data-es="Lo Que Hacemos">What We Do</p>
+  <h2 class="section-title" data-en="Visual services built for &lt;em&gt;modern brands&lt;/em&gt;" data-es="Servicios visuales creados para &lt;em&gt;marcas modernas&lt;/em&gt;">Visual services built for <em>modern brands</em></h2>
+  <div class="services-grid">
+    <div class="service-item">
+      <span class="service-num">01</span>
+      <p class="service-name" data-en="Brand Photography" data-es="Fotografía de Marca">Brand Photography</p>
+      <p class="service-desc" data-en="Full-day shoots that build a cohesive visual identity — headshots, products, lifestyle, and everything in between. Delivered in 5–7 business days." data-es="Sesiones completas que construyen una identidad visual coherente — retratos, productos, lifestyle y todo lo demás. Entrega en 5–7 días hábiles.">Full-day shoots that build a cohesive visual identity — headshots, products, lifestyle, and everything in between. Delivered in 5–7 business days.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-num">02</span>
+      <p class="service-name" data-en="Commercial Video" data-es="Video Comercial">Commercial Video</p>
+      <p class="service-desc" data-en="From concept to final cut. Brand films, ads, and promo reels edited to move people and drive conversions across every platform." data-es="Del concepto al corte final. Films de marca, anuncios y reels editados para impactar y generar conversiones en cada plataforma.">From concept to final cut. Brand films, ads, and promo reels edited to move people and drive conversions across every platform.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-num">03</span>
+      <p class="service-name" data-en="Social Content Packages" data-es="Paquetes de Contenido Social">Social Content Packages</p>
+      <p class="service-desc" data-en="Monthly content creation for brands that post consistently. Photos, reels, and short-form video ready for Instagram, TikTok, and LinkedIn." data-es="Creación mensual de contenido para marcas que publican con consistencia. Fotos, reels y video corto listos para Instagram, TikTok y LinkedIn.">Monthly content creation for brands that post consistently. Photos, reels, and short-form video ready for Instagram, TikTok, and LinkedIn.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-num">04</span>
+      <p class="service-name" data-en="Event Coverage" data-es="Cobertura de Eventos">Event Coverage</p>
+      <p class="service-desc" data-en="Corporate events, product launches, galas. A two-person team captures every angle — both stills and video — so nothing is missed." data-es="Eventos corporativos, lanzamientos de productos, galas. Un equipo de dos personas captura cada ángulo — fotos y video — sin perderse nada.">Corporate events, product launches, galas. A two-person team captures every angle — both stills and video — so nothing is missed.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-num">05</span>
+      <p class="service-name" data-en="Product Photography" data-es="Fotografía de Producto">Product Photography</p>
+      <p class="service-desc" data-en="E-commerce and editorial product shoots with clean studio setups or curated lifestyle environments. Up to 40 hero shots per session." data-es="Sesiones de producto para e-commerce y editorial, con setups de estudio o ambientes lifestyle seleccionados. Hasta 40 fotos principales por sesión.">E-commerce and editorial product shoots with clean studio setups or curated lifestyle environments. Up to 40 hero shots per session.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-num">06</span>
+      <p class="service-name" data-en="Real Estate &amp; Architecture" data-es="Bienes Raíces y Arquitectura">Real Estate &amp; Architecture</p>
+      <p class="service-desc" data-en="Interior and exterior photography with drone footage included. Listings and portfolios that make properties impossible to scroll past." data-es="Fotografía de interiores y exteriores con tomas de drone incluidas. Listados y portafolios que hacen imposible pasar la propiedad sin mirar.">Interior and exterior photography with drone footage included. Listings and portfolios that make properties impossible to scroll past.</p>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio-section" id="work">
+  <p class="section-label" data-en="Selected Work" data-es="Trabajo Seleccionado">Selected Work</p>
+  <h2 class="section-title" data-en="Projects we&#39;re &lt;em&gt;proud of&lt;/em&gt;" data-es="Proyectos de los que &lt;em&gt;estamos orgullosos&lt;/em&gt;">Projects we're <em>proud of</em></h2>
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <div class="portfolio-bg p-img-1"></div>
+      <div class="portfolio-overlay">
+        <span class="portfolio-tag" data-en="Brand Campaign" data-es="Campaña de Marca">Brand Campaign</span>
+        <p class="portfolio-title">Northwave Apparel — SS24</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-bg p-img-2"></div>
+      <div class="portfolio-overlay">
+        <span class="portfolio-tag" data-en="Portrait Series" data-es="Serie de Retratos">Portrait Series</span>
+        <p class="portfolio-title">The Founders Project</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-bg p-img-3"></div>
+      <div class="portfolio-overlay">
+        <span class="portfolio-tag" data-en="Event Coverage" data-es="Cobertura de Evento">Event Coverage</span>
+        <p class="portfolio-title">Art Basel Miami 2024</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-bg p-img-4"></div>
+      <div class="portfolio-overlay">
+        <span class="portfolio-tag" data-en="Commercial Video" data-es="Video Comercial">Commercial Video</span>
+        <p class="portfolio-title">Solaris Real Estate — Brand Film</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="about-img"></div>
+  <div class="about-content">
+    <p class="section-label" data-en="About Lumis" data-es="Sobre Lumis">About Lumis</p>
+    <h2 class="section-title" data-en="A studio that &lt;em&gt;obsesses&lt;/em&gt; over the details" data-es="Un estudio que &lt;em&gt;se obsesiona&lt;/em&gt; con los detalles">A studio that <em>obsesses</em> over the details</h2>
+    <p class="about-text" data-en="We&#39;re a team of visual creatives based in Miami, working with brands across the US and Latin America. Every project starts with a conversation — not a template." data-es="Somos un equipo de creativos visuales con base en Miami, trabajando con marcas en EE.UU. y América Latina. Cada proyecto empieza con una conversación — no con una plantilla.">We're a team of visual creatives based in Miami, working with brands across the US and Latin America. Every project starts with a conversation — not a template.</p>
+    <p class="about-text" data-en="We believe the best visual content is specific: to your brand, your audience, your moment. That&#39;s why we keep our client roster small and our output focused." data-es="Creemos que el mejor contenido visual es específico: para tu marca, tu audiencia, tu momento. Por eso mantenemos una lista de clientes pequeña y nuestra producción enfocada.">We believe the best visual content is specific: to your brand, your audience, your moment. That's why we keep our client roster small and our output focused.</p>
+    <div class="stats-row">
+      <div>
+        <span class="stat-num">120+</span>
+        <span class="stat-label" data-en="Projects Delivered" data-es="Proyectos Entregados">Projects Delivered</span>
+      </div>
+      <div>
+        <span class="stat-num">5yr</span>
+        <span class="stat-label" data-en="In Business" data-es="En el Mercado">In Business</span>
+      </div>
+      <div>
+        <span class="stat-num">98%</span>
+        <span class="stat-label" data-en="Client Return Rate" data-es="Clientes que Regresan">Client Return Rate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <p class="section-label" data-en="Client Feedback" data-es="Lo Que Dicen">Client Feedback</p>
+  <h2 class="section-title" data-en="What our clients &lt;em&gt;say&lt;/em&gt;" data-es="Lo que dicen nuestros &lt;em&gt;clientes&lt;/em&gt;">What our clients <em>say</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-quote" data-en="“Lumis completely changed how we show up online. The brand shoot was the best investment we made last year — period.”" data-es="“Lumis cambió por completo cómo nos presentamos en línea. La sesión de marca fue la mejor inversión que hicimos el año pasado — sin duda.”">“Lumis completely changed how we show up online. The brand shoot was the best investment we made last year — period.”</p>
+      <div class="testimonial-author">
+        <div class="author-avatar"><img src="./Lumis Studio — Visual Storytelling_files/80" alt="Sofia M."></div>
+        <div>
+          <p class="author-name">Sofia M.</p>
+          <p class="author-role">CEO, Verde Wellness</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-quote" data-en="“The event coverage was flawless. They were invisible the whole night but captured absolutely everything. Clients are still asking who shot it.”" data-es="“La cobertura del evento fue impecable. Fueron invisibles toda la noche pero capturaron absolutamente todo. Los clientes siguen preguntando quién tomó las fotos.”">“The event coverage was flawless. They were invisible the whole night but captured absolutely everything. Clients are still asking who shot it.”</p>
+      <div class="testimonial-author">
+        <div class="author-avatar"><img src="./Lumis Studio — Visual Storytelling_files/80(1)" alt="James R."></div>
+        <div>
+          <p class="author-name">James R.</p>
+          <p class="author-role">Director, Apex Events</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-quote" data-en="“We&#39;ve worked with three other agencies before. Lumis is the first one that actually understood our brand before picking up a camera.”" data-es="“Hemos trabajado con otras tres agencias antes. Lumis es la primera que realmente entendió nuestra marca antes de tomar una cámara.”">“We've worked with three other agencies before. Lumis is the first one that actually understood our brand before picking up a camera.”</p>
+      <div class="testimonial-author">
+        <div class="author-avatar"><img src="./Lumis Studio — Visual Storytelling_files/80(2)" alt="Mariana L."></div>
+        <div>
+          <p class="author-name">Mariana L.</p>
+          <p class="author-role">Marketing Lead, Solaris RE</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="section-label" data-en="Get in Touch" data-es="Contáctanos">Get in Touch</p>
+      <h2 class="section-title" data-en="Let&#39;s make something &lt;em&gt;worth seeing&lt;/em&gt;" data-es="Hagamos algo que &lt;em&gt;valga la pena ver&lt;/em&gt;">Let's make something <em>worth seeing</em></h2>
+      <p class="contact-desc" data-en="Tell us about your project and we&#39;ll get back to you within one business day with a tailored proposal." data-es="Cuéntanos sobre tu proyecto y te responderemos en un día hábil con una propuesta personalizada.">Tell us about your project and we'll get back to you within one business day with a tailored proposal.</p>
+      <div class="contact-info">
+        <div class="contact-line"><strong data-en="Email" data-es="Email">Email</strong> hello@lumisstudio.com</div>
+        <div class="contact-line"><strong data-en="Phone" data-es="Teléfono">Phone</strong> (305) 000-0000</div>
+        <div class="contact-line"><strong data-en="Location" data-es="Ubicación">Location</strong> Miami, FL</div>
+        <div class="contact-line"><strong data-en="Hours" data-es="Horario">Hours</strong> <span data-en="Mon–Fri, 9am–6pm EST" data-es="Lun–Vie, 9am–6pm EST">Mon–Fri, 9am–6pm EST</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" data-en="First Name" data-es="Nombre">First Name</label>
+          <input type="text" class="form-input" data-placeholder-en="Sofia" data-placeholder-es="Sofía" placeholder="Sofia">
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-en="Last Name" data-es="Apellido">Last Name</label>
+          <input type="text" class="form-input" data-placeholder-en="Martinez" data-placeholder-es="Martínez" placeholder="Martinez">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" data-en="Email" data-es="Correo Electrónico">Email</label>
+        <input type="email" class="form-input" data-placeholder-en="sofia@yourbrand.com" data-placeholder-es="sofia@tumarca.com" placeholder="sofia@yourbrand.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label" data-en="Service Needed" data-es="Servicio Requerido">Service Needed</label>
+        <select class="form-select">
+          <option value="" disabled="" selected="" data-en="Select a service..." data-es="Selecciona un servicio...">Select a service...</option>
+          <option data-en="Brand Photography" data-es="Fotografía de Marca">Brand Photography</option>
+          <option data-en="Commercial Video" data-es="Video Comercial">Commercial Video</option>
+          <option data-en="Social Content Package" data-es="Paquete de Contenido Social">Social Content Package</option>
+          <option data-en="Event Coverage" data-es="Cobertura de Eventos">Event Coverage</option>
+          <option data-en="Product Photography" data-es="Fotografía de Producto">Product Photography</option>
+          <option data-en="Real Estate &amp; Architecture" data-es="Bienes Raíces y Arquitectura">Real Estate &amp; Architecture</option>
+          <option data-en="Other / Not Sure" data-es="Otro / No estoy seguro">Other / Not Sure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" data-en="Tell Us About Your Project" data-es="Cuéntanos Sobre Tu Proyecto">Tell Us About Your Project</label>
+        <textarea class="form-textarea" data-placeholder-en="What are you looking to create? Timeline, budget, any details that help..." data-placeholder-es="¿Qué quieres crear? Tiempo, presupuesto, cualquier detalle que ayude..." placeholder="What are you looking to create? Timeline, budget, any details that help..."></textarea>
+      </div>
+      <button class="btn-submit" data-en="Send Message" data-es="Enviar Mensaje">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="file:///C:/Users/customer/Downloads/index_3.html#" class="logo">Lumis <span>Studio</span></a>
+  <p class="footer-copy" data-en="© 2025 Lumis Studio. All rights reserved." data-es="© 2025 Lumis Studio. Todos los derechos reservados.">© 2025 Lumis Studio. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="file:///C:/Users/customer/Downloads/index_3.html#">Instagram</a></li>
+    <li><a href="file:///C:/Users/customer/Downloads/index_3.html#">Behance</a></li>
+    <li><a href="file:///C:/Users/customer/Downloads/index_3.html#">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<script>
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const text = el.getAttribute(`data-${lang}`);
+      if (!text) return;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
+      el.innerHTML = text;
+    });
+
+    document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+      el.placeholder = el.getAttribute(`data-placeholder-${lang}`) || el.placeholder;
+    });
+  }
+</script>
+
+
+</body></html>
